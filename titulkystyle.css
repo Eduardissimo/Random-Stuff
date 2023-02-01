@@ -1,0 +1,35 @@
+
+html,body, main, div {
+    margin: 0;
+    height: 100%;    
+}
+
+body {
+    background-color: #3b3936;
+    text-align: center;
+}
+
+.box {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+h2 {
+    font-family: 'IM Fell DW Pica', serif;
+    color: antiquewhite;
+    font-size: 3.052rem;
+    opacity: 0;
+    animation-name: example;
+    animation-duration: 1500ms;
+    animation-direction: alternate;
+    animation-iteration-count: 12;
+}
+
+  
+@keyframes example {
+    0%: {opacity: 0;}
+    100% {opacity: 1;}
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TODO" />
+  <title>TO DO APP</title>
+  <link rel="stylesheet" href="todoweb.css" />
+</head>
+
+<body>
+
+  <main>
+    <h2>Do the following:</h2>
+    <ul id="todos"></ul>
+
+    <h2>What else do you need to do today?</h2>
+    <form>
+      <input name="todo" type="text">
+      <input type="submit" value="Add To Do">
+    </form>
+    <button onclick="removeToDos()">Clear</button>
+
+
+    <script>
+
+      // Get DOM elements
+      const form = document.querySelector('form');
+      const input = document.querySelector("[name='todo']");
+      const todoList = document.getElementById('todos');
+
+      // Local storage array
+      const existingTodos = JSON.parse(localStorage.getItem('todos')) || [];
+
+      const todoData = [];
+
+      existingTodos.forEach(todo => {
+        addTodo(todo);
+      });
+
+
+      //adds to list
+      function addTodo(todoText) {
+        todoData.push(todoText);
+        const li = document.createElement('li')
+        li.innerHTML = todoText;
+        todoList.appendChild(li);
+        localStorage.setItem('todos', JSON.stringify(todoData));
+        input.value = ''
+      }
+
+      // Event to Add
+      form.onsubmit = (event) => {
+        event.preventDefault();
+        addTodo(input.value);
+      }
+
+      //clears list
+      function removeToDos(todoText) {
+        existingTodos = JSON.parse(localStorage.removeItem('todos'));
+        todoData.pop(todoText);
+        document.getElementById("todos").innerHTML = "";
+      };
+
+    </script>
+  </main>
+
+</body>
+
+</html>
